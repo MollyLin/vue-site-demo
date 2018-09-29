@@ -1,0 +1,5 @@
+// 載入 bs 套用變數的方法
+@import "~bootstrap/scss/functions";
+//客製化引入樣式
+@import "./helpers/_variables";
+@import "~bootstrap/scss/bootstrap";
