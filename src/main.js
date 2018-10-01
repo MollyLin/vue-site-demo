@@ -20,11 +20,12 @@ new Vue({
 });
 
 router.beforeEach((to, from, next) => {
-    console.log(to, from, next);
+    //console.log(to, from, next);
     if (to.meta.requiresAuth) {
+        // 不會直接放行 console.log('這裡需要驗證')
         const api = `${process.env.APIPATH}/api/user/check`;
         axios.post(api).then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             if (response.data.success) {
                 next();
             } else {
@@ -34,6 +35,7 @@ router.beforeEach((to, from, next) => {
             }
         })
     } else {
+        // 直接放行
         next();
     }
 
