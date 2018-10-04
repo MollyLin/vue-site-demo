@@ -34,25 +34,7 @@
             </tbody>
         </table>
 
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item" :class="{'disabled':!pagination.has_pre }">
-                <a class="page-link" href="#" aria-label="Previous" @click.prevent="getProducts(pagination.current_page - 1)">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                </li>
-                <li class="page-item" v-for="page in pagination.total_pages" :key="page" :class="{'active':pagination.current_page === page}">
-                    <a class="page-link" href="#" @click.prevent="getProducts(page)">1</a>
-                </li>
-                <li class="page-item" :class="{'disabled': !pagination.has_nex}">
-                    <a class="page-link" href="#" aria-label="Next" @click.prevent="getProducts(pagination.current_page +1)">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <Pagination :pages="pagination" @emitPages="getProducts"></Pagination>
 
         <div class="modal fade" id="productModal">
             <div class="modal-dialog" role="document">
@@ -173,6 +155,8 @@
 
 <script>
     import $ from 'jquery';
+    import Pagination from '../Pagination';
+    
     export default {
         data () {
             return {
@@ -185,6 +169,9 @@
                     fileUploading: false //方法二:畫面讀取效果 使用fontawesome
                 }
             }
+        },
+        components: {
+            Pagination,
         },
         methods: {
             getProducts (page = 1) {
