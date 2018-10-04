@@ -10,12 +10,14 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import App from './App'
 import router from './router'
 import './bus'
+import currencyFilter from './filters/currency';
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 
 //全域啟用
 Vue.component('Loading', Loading);
+Vue.filter('currency', currencyFilter);
 
 axios.defaults.withCredentials = true;
 
