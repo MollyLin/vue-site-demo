@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 //import HelloWorld from '@/components/HelloWorld'
 import Dashboard from '@/components/Dashboard'
 import Login from '@/components/pages/Login'
@@ -8,7 +9,9 @@ import Coupons from '@/components/pages/Coupons'
 import Orders from '@/components/pages/Order'
 import CustomerOrder from '@/components/pages/CustomerOrders'
 
+
 Vue.use(Router)
+
 
 export default new Router({
     linkActiveClass: 'active',
