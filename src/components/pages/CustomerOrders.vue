@@ -124,8 +124,8 @@
             <form class="col-md-6" @submit.prevent="createOrder">
                 <div class="form-group">
                 <label for="useremail">Email</label>
-                <input type="email" class="form-control" name="email" id="useremail"
-                    v-validate="'required|email'" v-model="form.user.email" placeholder="請輸入 Email" required>
+                <input type="email" class="form-control" name="email" id="useremail" :class="{'is-invalid': errors.has('email')}"
+                    v-validate="'required|email'" v-model="form.user.email" placeholder="請輸入 Email">
                 <span class="text-danger" v-if="errors.has('email')">{{ errors.first('email') }}</span>
                 </div>
             
@@ -260,6 +260,9 @@
                     if (result) {
                         this.$http.post(url, {data: order}).then((response) => {
                             console.log('訂單已建立', response);
+                            if (response.data.success) {
+                                vm.$router.push(`/customer_checkout/${response.data.orderId}`);
+                            }
                             vm.isLoading = false;
                         });
                     } else {
